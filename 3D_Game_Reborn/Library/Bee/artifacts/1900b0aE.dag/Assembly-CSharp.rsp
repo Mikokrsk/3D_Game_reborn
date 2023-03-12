@@ -370,6 +370,7 @@
 "Assets/Scripts/Save_scripts/Menu_Save_Data.cs"
 "Assets/Scripts/Save_scripts/Player_Save_Data .cs"
 "Assets/Scripts/Save_scripts/SaveManager.cs"
+"Assets/Scripts/Start_exit_script/Start_exit_script.cs"
 "Assets/Scripts/Test_script.cs"
 -langversion:9.0
 
