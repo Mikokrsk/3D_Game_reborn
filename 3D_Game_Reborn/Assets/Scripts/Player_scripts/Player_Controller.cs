@@ -16,7 +16,7 @@ public class Player_Controller : MonoBehaviour
     void Update()
     {
         //Pause game and active setings Menu
-        if(Input.GetKeyDown(KeyCode.Escape))
+/*        if(Input.GetKeyDown(KeyCode.Escape))
         {
             if(Menu.active==false)
             {
@@ -28,7 +28,7 @@ public class Player_Controller : MonoBehaviour
                 Menu.SetActive(false);
                 Time.timeScale = 1f;
             }
-        }
+        }*/
         Take_Damage();
 
 

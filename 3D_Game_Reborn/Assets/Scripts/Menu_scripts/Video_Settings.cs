@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,7 +22,7 @@ public class Video_Settings : MonoBehaviour
         List<string> options = new List<string>();
         resolutions = Screen.resolutions;
         //int currentResolutionIndex = 0;
-
+      //  Debug.Log(resolutions[resolutions.Length-1].ToString());//+"===="+ Screen.height+"====="+Screen.width+"======");
         for (int i = 0; i < resolutions.Length; i++)
         {
             string option = resolutions[i].width + "X" + resolutions[i].height +" "+ resolutions[i].refreshRate + "Hz";

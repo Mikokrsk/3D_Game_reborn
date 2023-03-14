@@ -6,21 +6,28 @@ public class Move_Controller : MonoBehaviour
 {
     public Animator anim;
 
-    public static KeyCode _run_Forward = KeyCode.W;
-    public static KeyCode _run_Left = KeyCode.A;
-    public static KeyCode _run_Back = KeyCode.S;
-    public static KeyCode _run_Right = KeyCode.D;
-    public float speed = 5f;
-
+    private static KeyCode _run_Forward ;
+    private static KeyCode _run_Left ;
+    private static KeyCode _run_Back ;
+    private static KeyCode _run_Right ;
+    private float speed = 5f;
+    //Move_Controller move = new Move_Controller();
     // Start is called before the first frame update
     void Start()
     {
+      //  Move_Controller move =new Move_Controller();
+        // Setings_Menu_Script setings= new Setings_Menu_Script();
+        Set_value();
         anim = GetComponent<Animator>();
     }
 
-    public void Test()
+    public static void Set_value()
     {
-        Debug.Log($"_run_Forward = {_run_Forward} + _run_Left =  {_run_Left} + _run_Back = {_run_Back} + _run_Right {_run_Right}");
+
+        _run_Forward = Setings_Menu_Script._run_Forward;
+        _run_Left = Setings_Menu_Script._run_Left;
+        _run_Back = Setings_Menu_Script._run_Back;
+        _run_Right = Setings_Menu_Script._run_Right;
     }
     // Update is called once per frame
     void Update()

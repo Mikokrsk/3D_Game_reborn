@@ -15,13 +15,13 @@ public class Setings_Menu_Script : MonoBehaviour
     [SerializeField]
     private int[] _keyCodes ;
 
-    public static KeyCode _run_Forward = KeyCode.W;
-    public static KeyCode _run_Left = KeyCode.A;
-    public static KeyCode _run_Back = KeyCode.S;
-    public static KeyCode _run_Right = KeyCode.D;   
-    public static KeyCode _attack_1 = KeyCode.Alpha1;
-    public static KeyCode _attack_2 = KeyCode.Alpha2; 
-    public static KeyCode _attack_3 = KeyCode.Alpha3;
+    public static KeyCode _run_Forward;
+    public static KeyCode _run_Left;
+    public static KeyCode _run_Back;
+    public static KeyCode _run_Right;   
+    public static KeyCode _attack_1;
+    public static KeyCode _attack_2; 
+    public static KeyCode _attack_3;
 
     public const string saveKey = "Setings_Menu_Save";
 
@@ -110,6 +110,7 @@ public class Setings_Menu_Script : MonoBehaviour
         _attack_1 = (KeyCode)_keyCodes[4];
         _attack_2 = (KeyCode)_keyCodes[5];
         _attack_3 = (KeyCode)_keyCodes[6];
+        Move_Controller.Set_value();
         Save();
     }
 

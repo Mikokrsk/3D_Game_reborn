@@ -30,7 +30,7 @@ namespace SaveData
             Attack_3 = (int)KeyCode.G;
 
             isFull_screen = true;
-            ResolutionIndex = 0;
+            ResolutionIndex = Screen.resolutions.Length-1;
             QualityIndex = 0;
         }
 
