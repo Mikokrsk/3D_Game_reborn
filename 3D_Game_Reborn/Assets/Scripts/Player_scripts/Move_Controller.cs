@@ -5,30 +5,41 @@ using UnityEngine;
 public class Move_Controller : MonoBehaviour
 {
     public Animator anim;
-
-    private static KeyCode _run_Forward ;
+    //public Menu.Test_script test_Script;
+    /*private static KeyCode _run_Forward ;
     private static KeyCode _run_Left ;
     private static KeyCode _run_Back ;
-    private static KeyCode _run_Right ;
+    private static KeyCode _run_Right ;*/
+    private  KeyCode _run_Forward ;
+    private  KeyCode _run_Left ;
+    private  KeyCode _run_Back;
+    private  KeyCode _run_Right;
     private float speed = 5f;
     //Move_Controller move = new Move_Controller();
     // Start is called before the first frame update
     void Start()
     {
-      //  Move_Controller move =new Move_Controller();
+        
+        
+        Debug.Log(_run_Forward +"MOVE");
+        //_run_Left = GetLeft();
+        
+       // Debug.Log($"2 _run_Forward = {_run_Forward} _run_Left = {_run_Left} _run_Back = {_run_Back} _run_Right = {_run_Right}");
+        //  Move_Controller move =new Move_Controller();
         // Setings_Menu_Script setings= new Setings_Menu_Script();
-        Set_value();
+        // Set_value();
         anim = GetComponent<Animator>();
     }
 
-    public static void Set_value()
+   
+    /*public static void Set_value()
     {
 
         _run_Forward = Setings_Menu_Script._run_Forward;
         _run_Left = Setings_Menu_Script._run_Left;
         _run_Back = Setings_Menu_Script._run_Back;
         _run_Right = Setings_Menu_Script._run_Right;
-    }
+    }*/
     // Update is called once per frame
     void Update()
     {

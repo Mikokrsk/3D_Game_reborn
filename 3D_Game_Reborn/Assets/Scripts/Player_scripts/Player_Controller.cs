@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player_Controller : MonoBehaviour
 {
-    public GameObject Menu;
+   // public GameObject Menu;
   //  public static float max_health = 100f;
  //   public static float health = 100f;
     public Animator anim;

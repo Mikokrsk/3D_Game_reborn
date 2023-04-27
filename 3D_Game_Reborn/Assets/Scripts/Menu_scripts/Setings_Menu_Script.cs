@@ -11,19 +11,11 @@ public class Setings_Menu_Script : MonoBehaviour
 {
     public GameObject Choice_menu;
     public Text[] _text ;
-    private int[] _values ;
-    [SerializeField]
-    private int[] _keyCodes ;
 
-    public static KeyCode _run_Forward;
-    public static KeyCode _run_Left;
-    public static KeyCode _run_Back;
-    public static KeyCode _run_Right;   
-    public static KeyCode _attack_1;
-    public static KeyCode _attack_2; 
-    public static KeyCode _attack_3;
+    private KeyCode[] _allKeyCodes ;
+    private KeyCode[] _keyCodes ;
 
-    public const string saveKey = "Setings_Menu_Save";
+    private const string saveKey = "Setings_Menu_Save";
 
     private void Save()
     {
@@ -33,14 +25,14 @@ public class Setings_Menu_Script : MonoBehaviour
     private SaveData.Menu_Save GetSaveSnapshot()
     {
         var data = new SaveData.Menu_Save()
-        {
-            Run_Forward = (int)_run_Forward,
-            Run_Back = (int)_run_Back,
-            Run_Left = (int)_run_Left,
-            Run_Right = (int)_run_Right,
-            Attack_1 = (int)_attack_1,
-            Attack_2 = (int)_attack_2,
-            Attack_3 = (int)_attack_3,
+        { 
+            Run_Forward = _keyCodes[0],
+            Run_Back = _keyCodes[1],
+            Run_Left = _keyCodes[2],
+            Run_Right = _keyCodes[3],
+            Attack_1 = _keyCodes[4],
+            Attack_2 = _keyCodes[5],
+            Attack_3 = _keyCodes[6],        
         };
         return data;
     }
@@ -48,89 +40,63 @@ public class Setings_Menu_Script : MonoBehaviour
     private void Load()
     {
         var data = SaveManager.Load<SaveData.Menu_Save>(saveKey);
-        _run_Forward = (KeyCode)data.Run_Forward; 
-        _run_Left= (KeyCode)data.Run_Left;
-        _run_Back= (KeyCode)data.Run_Back;
-        _run_Right= (KeyCode)data.Run_Right;
-        _attack_1= (KeyCode)data.Attack_1;
-        _attack_2= (KeyCode)data.Attack_2;
-        _attack_3= (KeyCode)data.Attack_3;
-        Debug.Log(data.Run_Forward.ToString());
+        _keyCodes[0] = data.Run_Forward;
+        _keyCodes[1] = data.Run_Left;
+        _keyCodes[2] = data.Run_Back;
+        _keyCodes[3] = data.Run_Right;
+        _keyCodes[4] = data.Attack_1;
+        _keyCodes[5] = data.Attack_2;
+        _keyCodes[6] = data.Attack_3;
     }
 
-    void Awake()
-    {
-        _keyCodes = new int[_text.Length];
-        _values = (int[])System.Enum.GetValues(typeof(KeyCode));
+    private void Awake()
+    {                  
+        _keyCodes = new KeyCode[_text.Length];
+        _allKeyCodes = (KeyCode[])System.Enum.GetValues(typeof(KeyCode));
     }
 
     private void Start()
     {
-       // Choice_menu = GetComponent<GameObject>();
         Load();
-        _keyCodes[0] = (int)_run_Forward;
-        _keyCodes[1] = (int)_run_Left;
-        _keyCodes[2] = (int)_run_Back;
-        _keyCodes[3] = (int)_run_Right;
-        _keyCodes[4] = (int)_attack_1;
-        _keyCodes[5] = (int)_attack_2;
-        _keyCodes[6] = (int)_attack_3;
+        Refreash_Texts();
+    }
 
+    private void Refreash_Texts()
+    {
         int x = 0;
         foreach (var item in _keyCodes)
         {
-
-            _text[x].text = ((KeyCode)item).ToString();
+            _text[x].text = (item).ToString();
             x++;
         }
-       
     }
-    
-    public void FindDuplicates(int num)
+
+    private void FindDuplicates(KeyCode num)
     { 
         int x = 0;
         foreach (var item in _keyCodes)
         {
             if (_keyCodes[x] == num)
             {
-             _keyCodes[x] = (int)KeyCode.None;
+             _keyCodes[x] = KeyCode.None;
              _text[x].text = KeyCode.None.ToString();
             }       
             x++;
         }
-
-    }
-
-    public void SaveValues()
-    {
-         _run_Forward =(KeyCode)_keyCodes[0];
-         _run_Left = (KeyCode)_keyCodes[1];
-        _run_Back = (KeyCode)_keyCodes[2];
-        _run_Right = (KeyCode)_keyCodes[3];
-        _attack_1 = (KeyCode)_keyCodes[4];
-        _attack_2 = (KeyCode)_keyCodes[5];
-        _attack_3 = (KeyCode)_keyCodes[6];
-        Move_Controller.Set_value();
-        Save();
     }
 
     public void Default_values()
     {
-        _keyCodes[0] = (int)KeyCode.W;
-        _keyCodes[1] = (int)KeyCode.A;
-        _keyCodes[2] = (int)KeyCode.S;
-        _keyCodes[3] = (int)KeyCode.D;
-        _keyCodes[4] = (int)KeyCode.Alpha1;
-        _keyCodes[5] = (int)KeyCode.Alpha2;
-        _keyCodes[6] = (int)KeyCode.Alpha3;
+        _keyCodes[0] = KeyCode.W;
+        _keyCodes[1] = KeyCode.A;
+        _keyCodes[2] = KeyCode.S;
+        _keyCodes[3] = KeyCode.D;
+        _keyCodes[4] = KeyCode.Alpha1;
+        _keyCodes[5] = KeyCode.Alpha2;
+        _keyCodes[6] = KeyCode.Alpha3;
 
-        int x = 0;
-        foreach (var item in _keyCodes)
-        {
-            _text[x].text = ((KeyCode)item).ToString();
-            x++;
-        }
-        SaveValues();
+        Refreash_Texts();
+        Save();
     }
 
     public void GetKeyCode(int num_button)
@@ -145,7 +111,7 @@ public class Setings_Menu_Script : MonoBehaviour
         if (Input.anyKeyDown)
         {
            // Debug.Log("111111111111111111");
-            for (int i = 0; i < _values.Length; i++)
+            for (int i = 0; i < _allKeyCodes.Length; i++)
             {
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
@@ -154,12 +120,11 @@ public class Setings_Menu_Script : MonoBehaviour
                 }
                 else
                 {
-                    if (Input.GetKey((KeyCode)_values[i]))
+                    if (Input.GetKey(_allKeyCodes[i]))
                     {
-                        FindDuplicates(_values[i]);
-                        _text[x].text = ((KeyCode)_values[i]).ToString();
-                        _keyCodes[x] = _values[i];
-                        SaveValues(); 
+                        FindDuplicates(_allKeyCodes[i]);
+                        _text[x].text = (_allKeyCodes[i]).ToString();
+                        _keyCodes[x] = _allKeyCodes[i]; 
                         Save();
                         StopCoroutine(Coroutine(x));
                         break;

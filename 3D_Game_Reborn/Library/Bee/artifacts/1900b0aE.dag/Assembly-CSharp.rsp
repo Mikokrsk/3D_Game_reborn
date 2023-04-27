@@ -353,6 +353,7 @@
 "Assets/Scripts/Enemy_scripts/Enemy_settings.cs"
 "Assets/Scripts/Enemy_scripts/Rotate_HP.cs"
 "Assets/Scripts/Menu_scripts/Menu_script.cs"
+"Assets/Scripts/Menu_scripts/My_KeyCode.cs"
 "Assets/Scripts/Menu_scripts/Setings_Menu_Script.cs"
 "Assets/Scripts/Menu_scripts/Video_Settings.cs"
 "Assets/Scripts/Player_scripts/Atack_1.cs"
